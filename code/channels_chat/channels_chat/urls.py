@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from .views import home, messages
+
 urlpatterns = [
+    url(r'^$', home),
+    url(r'^messages/', messages),
     url(r'^admin/', admin.site.urls),
 ]
