@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+
+    background-color: floralwhite;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+header {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+
+    padding: 10px 0;
+
+    background-color: lightgray;
+    text-align: center;
+}
+
+header h1 {
+    font-size: x-large;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 20px 0;
+
+    background-color: lightgray;
+    text-align: center;
+    font-size: small;
+}
+
+footer span {
+    padding: 0 50px;
+}
+
+footer a {
+    margin-left: 15px;
+
+    color: dimgrey;
+}
+
+
