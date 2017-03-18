@@ -7,7 +7,7 @@ from .models import Message
 
 
 def home(request):
-    return render('channels_chat/index.html')
+    return render(request, 'channels_chat/index.html')
 
 
 def messages(request):

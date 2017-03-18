@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
+    'channels_chat',
 ]
 
 MIDDLEWARE = [
@@ -84,10 +85,10 @@ DATABASES = {
 # Channels
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("localhost", 6379)],
-        },
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        #"CONFIG": {
+        #    "hosts": [("localhost", 6379)],
+        #},
         "ROUTING": "channels_chat.routing.channel_routing",
     },
 }
@@ -130,3 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+]
