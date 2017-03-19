@@ -15,7 +15,7 @@ class _Tabs extends React.Component
        const unique_tabs = this.props.tabs.filter((item, pos) => {
            return this.props.tabs.indexOf(item) === pos;
        });
-       const tabs = unique_tabs((tab_name) => {
+       const tabs = unique_tabs.map((tab_name) => {
            const tab_id = 'tab_' + tab_name;
            const classes = "tab" + (
                this.props.currentTab === tab_name ?
@@ -23,7 +23,7 @@ class _Tabs extends React.Component
 
            return (
                <div key={tab_id} id={tab_id}
-                    class_name={classes}
+                    className={classes}
                     onClick={this.props.onSelectTab}
                >
                    {tab_name.toUpperCase()}
@@ -32,8 +32,8 @@ class _Tabs extends React.Component
        });
 
        return (
-           <nav class_name="tabs">
-               {}
+           <nav className="tabs">
+               {tabs}
            </nav>
        );
    }

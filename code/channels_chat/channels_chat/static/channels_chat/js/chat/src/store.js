@@ -3,7 +3,7 @@
  */
 
 import { createStore } from 'redux';
-import chatAppReducer from 'reducers';
+import chatAppReducer from './reducers';
 
 export const MessageTypes = {
     REGULAR_MESSAGE: 'REGULAR_MESSAGE',
@@ -12,7 +12,7 @@ export const MessageTypes = {
 
 let store = createStore(chatAppReducer);
 
-store.prototype.chatMessages = function ()
+/*store.prototype.chatMessages = function ()
 {
     return this.messages.filter((msg) =>
     {
@@ -27,3 +27,5 @@ store.prototype.chatQuestions = function ()
         return msg.type == MessageTypes.QUESTION_MESSAGE;
     });
 };
+*/
+module.exports.store = store;

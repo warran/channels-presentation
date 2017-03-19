@@ -3,7 +3,7 @@
  */
 
 import { combineReducers } from 'redux';
-import { ADD_MESSAGE, SET_USERNAME, SET_TAB } from 'action';
+import { ADD_MESSAGE, SET_USERNAME, SET_TAB } from './actions';
 
 const chatApp = combineReducers({
     messages,
@@ -21,7 +21,7 @@ function messages(state=[], action)
     }
 }
 
-function currentUser(state, action)
+function currentUser(state=null, action)
 {
     switch (action.type) {
         case SET_USERNAME:
