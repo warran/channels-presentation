@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-//import MessageListTab from 'MessageListTab';
-//import NewMessageForm from 'NewMessageForm';
+import MessageListTab from './MessageListTab';
 import { Tabs } from './Tabs';
 
 class App extends Component {
@@ -11,6 +10,7 @@ class App extends Component {
         return (
             <div id="app">
                 <Tabs tabs={tabs_names} />
+                <MessageListTab/>
             </div>
         );
     }

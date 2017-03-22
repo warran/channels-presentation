@@ -21,7 +21,7 @@ export function setUsername(username)
 export function setTab(tab_name) {
     return {
         type: SET_TAB,
-        tab: tab_name,
+        tab_name: tab_name,
     };
 }
 

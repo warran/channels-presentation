@@ -24,7 +24,7 @@ class _Tabs extends React.Component
            return (
                <div key={tab_id} id={tab_id}
                     className={classes}
-                    onClick={this.props.onSelectTab}
+                    onClick={() => this.props.onSelectTab(tab_id)}
                >
                    {tab_name.toUpperCase()}
                </div>
@@ -47,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSelectTab: (id) => {
-            const tab_name = id.slice(4);
+        onSelectTab: (tab_id) => {
+            const tab_name = tab_id.slice(4);
 
             dispatch(setTab(tab_name));
         },

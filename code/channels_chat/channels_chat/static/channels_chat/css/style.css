@@ -5,8 +5,18 @@ body {
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
-header {
+.wrapper {
     position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-flow: column;
+}
+
+header {
+    position: relative;
     top: 0;
 
     width: 100%;
@@ -22,9 +32,6 @@ header h1 {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-
     width: 100%;
 
     padding: 20px 0;
@@ -44,4 +51,72 @@ footer a {
     color: dimgrey;
 }
 
+div#root {
+    display: flex;
+    flex-flow: column;
+    padding: 35px;
+    flex-grow: 1;
+}
 
+div#app {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+
+    height: 100%;
+}
+
+/* TABS */
+
+nav div {
+    padding: 20px;
+
+    display: inline;
+
+    background-color: white;
+    border: 2px solid lightgrey;
+    color: lightgrey;
+}
+
+nav div.current {
+    background-color: lightgrey;
+    border: 2px solid lightgrey;
+    border-bottom-style: none;
+    color: black;
+}
+
+/* MESSAGES LIST */
+
+div.messages {
+    position: relative;
+    top: 20px;
+    flex-grow: 1;
+
+    display: flex;
+    flex-flow: column;
+
+    padding: 50px;
+
+    background-color: white;
+    border: 2px solid lightgrey;
+}
+
+ul.msg_list {
+    display: flex;
+    flex-flow: column;
+
+    flex-grow: 1;
+
+    padding-left: 0;
+}
+
+/* NEW MESSAGE FORM */
+
+form {
+    display: flex;
+}
+
+textarea {
+    flex-grow: 1;
+    height: 5em;
+}
