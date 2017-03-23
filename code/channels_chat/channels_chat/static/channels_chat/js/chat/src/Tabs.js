@@ -60,4 +60,4 @@ const Tabs = connect(
     mapDispatchToProps
 )(_Tabs);
 
-module.exports.Tabs = Tabs;
+export default Tabs;

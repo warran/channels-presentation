@@ -33,7 +33,7 @@ class NewMessageForm extends React.Component
     render ()
     {
         return (
-            <div class="msg_form">
+            <div className="msg_form">
                 <form onSubmit={this.handleSubmit}>
                     <textarea value={this.state.value} onChange={this.handleChange} />
                     <input type="submit" value="Send message" />

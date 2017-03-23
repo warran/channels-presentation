@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import MessageListTab from './MessageListTab';
-import { Tabs } from './Tabs';
+import Tabs from './Tabs';
+import UsernameDialog from './UsernameDialog';
 
 class App extends Component {
     render() {
@@ -11,6 +12,8 @@ class App extends Component {
             <div id="app">
                 <Tabs tabs={tabs_names} />
                 <MessageListTab/>
+
+                <UsernameDialog/>
             </div>
         );
     }

@@ -58,13 +58,13 @@ class _MessageListTab extends React.Component
         return (
             <div className="messages">
                 <MessageList messages={this.props.messages} />
-                <NewMessageForm onSendMessage={onSendMessage} />
+                <NewMessageForm onSendMessage={this.props.onSendMessage} />
             </div>
         );
     }
 }
 
-var MessageListTab = connect(
+const MessageListTab = connect(
     mapStateToProps,
     mapDispatchToProps
 )(_MessageListTab);
