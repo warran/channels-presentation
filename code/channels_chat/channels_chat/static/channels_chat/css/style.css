@@ -120,3 +120,29 @@ textarea {
     flex-grow: 1;
     height: 5em;
 }
+
+/* USERNAME DIALOG */
+
+div.dialogShadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.dialogShadow div.dialog {
+    height: 200px;
+    width: 500px;
+
+    align-self: center;
+
+    background-color: white;
+    border: 2px solid lightgray;
+}
