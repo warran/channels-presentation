@@ -32,7 +32,7 @@ function currentUser(state=null, action)
     }
 }
 
-function currentTab(state = 'chat', action)
+function currentTab(state='chat', action)
 {
     switch (action.type) {
         case SET_TAB:

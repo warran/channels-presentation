@@ -45,8 +45,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onSendMessage: (text) => {
-            dispatch(addMessage(text, ownProps.tab));
+        onSendMessage: (component_state) => {
+            dispatch(addMessage(component_state.value, ownProps.tab));
         },
     };
 };

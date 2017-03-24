@@ -25,6 +25,8 @@ class NewMessageForm extends React.Component
 
     _handleSubmit(event)
     {
+        event.preventDefault();
+
         this.props.onSendMessage(this.state);
 
         this.setState({value: ''});

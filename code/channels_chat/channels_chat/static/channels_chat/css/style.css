@@ -138,8 +138,13 @@ div.dialogShadow {
 }
 
 div.dialogShadow div.dialog {
-    height: 200px;
-    width: 500px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 150px;
+    width: 300px;
 
     align-self: center;
 

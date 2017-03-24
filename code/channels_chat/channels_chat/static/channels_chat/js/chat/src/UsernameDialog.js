@@ -28,6 +28,8 @@ class _UsernameDialog extends React.Component
 
     _handleSubmit(event)
     {
+        event.preventDefault();
+
         this.props.onSetUsername(this.state);
 
         this.setState({value: ''});
@@ -63,10 +65,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        onSetUsername: (text) => {
-            dispatch(setUsername(text));
+        onSetUsername: (component_state) => {
+            dispatch(setUsername(component_state.value));
         },
     };
 };
