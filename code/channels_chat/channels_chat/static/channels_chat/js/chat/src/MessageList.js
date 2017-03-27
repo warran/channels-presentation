@@ -16,7 +16,7 @@ class MessageList extends React.Component
                 <ChatMessage
                     user={msg.user}
                     time={msg.time}
-                    message={msg.content}
+                    message={msg.text}
                 />
             </li>
         );

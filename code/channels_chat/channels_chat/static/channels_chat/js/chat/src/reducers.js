@@ -27,6 +27,7 @@ function _createMessage(state, text)
     return {
         user: state.currentUser,
         type: state.currentTab,
+        time: new Date().toUTCString(),
         text: text,
     };
 }

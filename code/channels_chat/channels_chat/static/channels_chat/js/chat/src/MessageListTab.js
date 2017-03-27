@@ -12,8 +12,8 @@ import NewMessageForm from './NewMessageForm';
 
 
 export const MessageTypes = {
-    CHAT_MESSAGE: 'chat_message',
-    QUESTION_MESSAGE: 'question_message',
+    CHAT_MESSAGE: 'chat',
+    QUESTION_MESSAGE: 'question',
 };
 
 
@@ -21,7 +21,7 @@ const chatMessages = function (store)
 {
     return store.messages.filter((msg) =>
     {
-        return msg.type == MessageTypes.REGULAR_MESSAGE;
+        return msg.type == MessageTypes.CHAT_MESSAGE;
     });
 };
 
