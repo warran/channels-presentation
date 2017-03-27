@@ -9,7 +9,7 @@ CHAT_GROUPNAME = 'chat'
 
 
 def ws_join(message):
-    """This consumer is being called when the websocker channel
+    """This consumer is being called when the websocket channel
     is being opened.
     """
     message.reply_channel.send({"accept": True})
@@ -18,7 +18,7 @@ def ws_join(message):
 
 def ws_message(message):
     """This consumer is being called with each message received
-    on the websocker channel.
+    on the websocket channel.
     """
     msg = {k: message.content[k] for k in ['user', 'msg_text']}
     Message(**msg).save()

@@ -5,7 +5,7 @@
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_TAB = 'SET_TAB';
 
-export const REQUEST_MESSAGES = 'REQUEST_MESSAGES';
+export const MESSAGE_SENT = 'MESSAGE_SENT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const RECEIVED_MESSAGES = 'RECEIVED_MESSAGES';
 
@@ -25,26 +25,25 @@ export function setTab(tab_name) {
     };
 }
 
-
-export function requestMessages() {
-    return {
-        type: REQUEST_MESSAGES,
-    };
-}
-
-export function addMessage(text, message_type)
+export function addMessage(text)
 {
     return {
         type: ADD_MESSAGE,
         text: text,
-        message_type: message_type,
     };
 }
 
-export function receivedMessage(message)
+export function receivedMessages(messages)
 {
     return {
         type: RECEIVED_MESSAGES,
-        message: message,
+        messages: messages,
+    };
+}
+
+export function messageSent()
+{
+    return {
+        type: MESSAGE_SENT,
     };
 }

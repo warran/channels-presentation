@@ -5,7 +5,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sendMessage } from './actions';
+import { addMessage } from './actions';
 
 import MessageList from './MessageList';
 import NewMessageForm from './NewMessageForm';
@@ -39,14 +39,14 @@ const mapStateToProps = (state) => {
 
     return {
         messages: visibleMessages,
-        tab: state.currentTab,
+        currentTab: state.currentTab,
     };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onSendMessage: (component_state) => {
-            dispatch(addMessage(component_state.value, ownProps.tab));
+            dispatch(addMessage(component_state.value));
         },
     };
 };
@@ -58,7 +58,8 @@ class _MessageListTab extends React.Component
         return (
             <div className="messages">
                 <MessageList messages={this.props.messages} />
-                <NewMessageForm onSendMessage={this.props.onSendMessage} />
+                <NewMessageForm
+                    onSendMessage={this.props.onSendMessage} />
             </div>
         );
     }
