@@ -5,7 +5,7 @@
 export const SET_USERNAME = 'SET_USERNAME';
 export const SET_TAB = 'SET_TAB';
 
-export const MESSAGE_SENT = 'MESSAGE_SENT';
+export const CONNECT = 'CONNECT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const RECEIVED_MESSAGES = 'RECEIVED_MESSAGES';
 
@@ -38,12 +38,5 @@ export function receivedMessages(messages)
     return {
         type: RECEIVED_MESSAGES,
         messages: messages,
-    };
-}
-
-export function messageSent()
-{
-    return {
-        type: MESSAGE_SENT,
     };
 }

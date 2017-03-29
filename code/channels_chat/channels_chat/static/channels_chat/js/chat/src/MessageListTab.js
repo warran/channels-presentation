@@ -5,7 +5,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addMessage } from './actions';
+import { addMessage, CONNECT } from './actions';
 
 import MessageList from './MessageList';
 import NewMessageForm from './NewMessageForm';
@@ -45,6 +45,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        connect: (component_state) => {
+            dispatch({type: CONNECT });
+        },
         onSendMessage: (component_state) => {
             dispatch(addMessage(component_state.value));
         },
@@ -53,6 +56,11 @@ const mapDispatchToProps = (dispatch) => {
 
 class _MessageListTab extends React.Component
 {
+    componentDidMount()
+    {
+        this.props.connect();
+    }
+
     render()
     {
         return (
