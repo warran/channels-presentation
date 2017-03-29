@@ -18,7 +18,7 @@ function messages(state=[], action)
         case ADD_MESSAGE:
             return state.concat([action.message]);
         case RECEIVED_MESSAGES:
-            return state.concat(action.text);
+            return state.concat(action.messages);
         default:
             return state;
     }
