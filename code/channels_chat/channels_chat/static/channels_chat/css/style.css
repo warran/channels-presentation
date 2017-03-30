@@ -101,7 +101,7 @@ div.messages {
     border: 2px solid lightgrey;
 }
 
-ul.msg_list {
+#msg_list {
     display: flex;
     flex-flow: column;
 

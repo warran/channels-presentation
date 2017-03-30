@@ -9,6 +9,11 @@ import ChatMessage from './ChatMessage';
 
 class MessageList extends React.Component
 {
+    componentDidUpdate() {
+        let elem = document.getElementById('msg_list');
+        elem.scrollTop = elem.scrollHeight;
+    }
+
     render()
     {
         const msgs = this.props.messages.map((msg) =>
@@ -22,7 +27,7 @@ class MessageList extends React.Component
         );
 
         return (
-            <ul className="msg_list">
+            <ul id="msg_list">
                 {msgs}
             </ul>
         );
