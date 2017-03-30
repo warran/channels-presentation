@@ -26,9 +26,10 @@ def ws_message(message):
     """This consumer is being called with each message received
     on the websocket channel.
     """
-    msg = json.loads(message.content.text)
-    Message(**msg).save()
-    Group(CHAT_GROUPNAME).send(msg)
+    print(message.content)
+    msg_text = message.content['text']
+    Message.from_dict(json.loads(msg_text)).save()
+    Group(CHAT_GROUPNAME).send({'text': msg_text})
 
 
 def ws_leave(message):

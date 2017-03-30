@@ -25,7 +25,17 @@ const websocketMiddleware = () =>
     {
         console.log(event);
 
-        const msgs = JSON.parse(event.data);
+        let msgs = JSON.parse(event.data);
+        // this filter should prevent the message from appearing two times
+        // in the message list
+        // can be done better, but hey, it's Channels presentation
+        // not Redux with Websockets presentation
+        if(!Array.isArray(msgs)) {
+            msgs = [msgs];
+        }
+        msgs = msgs.filter((msg) => {
+            return msg.user !== store.getState().currentUser;
+        });
         store.dispatch(actions.receivedMessages(msgs));
     };
 

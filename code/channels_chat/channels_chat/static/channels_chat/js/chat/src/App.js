@@ -6,7 +6,7 @@ import UsernameDialog from './UsernameDialog';
 
 class App extends Component {
     render() {
-        const tabs_names = ['chat', 'questions'];
+        const tabs_names = ['chat', 'question'];
 
         return (
             <div id="app">

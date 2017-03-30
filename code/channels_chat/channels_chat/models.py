@@ -14,6 +14,22 @@ class Message(models.Model):
         return {
             'user': self.user,
             'text': self.message,
-            'time': self.created_at,
+            'time': self.created_at.isoformat()
+                    if hasattr(self.created_at, 'isoformat')
+                    else self.created_at,
             'type': self.type
         }
+
+    # this method is here because of lack of consistency
+    # between Message object fields in BE and FE :/ sorry
+    @classmethod
+    def from_dict(cls, dict):
+        if 'text' in dict and 'message' not in dict:
+            dict['message'] = dict['text']
+            del dict['text']
+
+        if 'time' in dict and 'created_at' not in dict:
+            dict['created_at'] = dict['time']
+            del dict['time']
+
+        return cls(**dict)
