@@ -15,14 +15,23 @@
 
 \definecolor{codebg}{gray}{0.9}
 
-\title{Django Channels\\Introduction}
+\title{Channel me up, Django!}
 \author[Radoslaw Warzocha]{Radoslaw Warzocha}
-%\date{I dont know the date yet}
+\date{May 19, 2017}
 
 \begin{document}
 
 \begin{frame}
 	\titlepage
+\end{frame}
+
+\begin{frame}{\texttt{\$ whoami}}
+	\begin{itemize}
+		\item SoftServe Poland - Wrocław Dev Center
+		\item Python Engineer / Team Leader
+		\item ...with newfound love for FE technologies
+		\item machine learning noob
+	\end{itemize}
 \end{frame}
 
 \section{Motivation}
@@ -35,6 +44,28 @@
 		\vspace{1em}
 		More and more often we need to use\\
 		\textit{server push} technology
+		
+		\begin{figure}
+		% websocket usecases everywhere
+			\includegraphics[scale=0.45]{websockets_everywhere.jpg}
+		\end{figure}
+	\end{center}
+\end{frame}
+
+\begin{frame}{HTTP2 utilization}
+	\begin{center}
+		\begin{figure}
+			\includegraphics[scale=0.45]{ce-http2.png}
+		\end{figure}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Enter Django Channels}
+	\begin{center}
+		\begin{figure}
+		% channels logo
+			\includegraphics[scale=0.6]{django-channels-logo.png}
+		\end{figure}
 	\end{center}
 \end{frame}
 
@@ -49,12 +80,20 @@
 	\end{adjustwidth}
 \end{frame}
 
-\begin{frame}{HTTP2 utilization}
+\begin{frame}
 	\begin{center}
-		\begin{figure}
-			\includegraphics[scale=0.45]{ce-http2.png}
-		\end{figure}
+	Try it!\\
+	\huge
+	http://xxx.xxx.xxx.xxx\\
+	\normalsize
+	\vspace{1em}
+	\scriptsize
+	just please, please, PLEASE... don't try to break it.\\
 	\end{center}
+	
+	\begin{flushright}
+			\includegraphics[scale=0.15]{please.jpg}	
+	\end{flushright}
 \end{frame}
 
 \section{Core concepts}
@@ -75,13 +114,22 @@
 
 \begin{frame}{Core concepts}
 	\begin{adjustwidth}{2em}{2.5em}
-	\begin{itemize}
-		\item Interface/Worker servers
-		\item Channels backend
-		\item ASGI
-		\item Consumers
-		\item Routing
-	\end{itemize}
+		\begin{columns}
+			\column{0.5\textwidth}
+			\begin{itemize}
+				\item Interface/Worker servers
+				\item Channels backend
+				\item ASGI
+				\item Consumers
+				\item Routing
+			\end{itemize}
+			
+			\column{0.5\textwidth}
+			\pause
+			\begin{figure}
+				\includegraphics[scale=0.58]{channels_diagram.png}
+			\end{figure}
+		\end{columns}
 	\end{adjustwidth}
 \end{frame}
 
@@ -175,8 +223,15 @@ channel_routing = [
 \begin{frame}[fragile]{HTTP in channels}
 \begin{center}
 	OK, but what happens to the regular, HTTP requests?
-	\pause
-	No worries! That's what \textbf{\texttt{http.requests}} channel is for!
+	\begin{figure}
+		\includegraphics[scale=0.35]{fry.png}
+	\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{HTTP in channels}
+\begin{center}
+	No worries! That's what \textbf{\texttt{http.request}} channel is for!
 \end{center}
 
 \begin{adjustwidth}{-1.5em}{-1.5em}
@@ -194,6 +249,19 @@ def http_consumer(message):
     response = HttpResponse("Hello world!")
     for chunk in AsgiHandler.encode_response(response):
         message.reply_channel.send(chunk)
+	\end{minted}
+\end{adjustwidth}
+\vspace{1em}
+\begin{adjustwidth}{-1.5em}{-1.5em}
+	\begin{minted}
+	[
+	bgcolor=codebg,
+	fontsize=\small,
+	baselinestretch=1.2
+	]
+	{python}
+# in routing.py
+route("http.request", http_consumer)
 	\end{minted}
 \end{adjustwidth}
 \end{frame}
@@ -240,10 +308,16 @@ def ws_message(message):
 
 \begin{frame}{Backends revisited}
 \begin{adjustwidth}{2em}{2.5em}
-	In Memmory backend is good for development, but not really suitable for production.
+	In Memory backend is good for development, but not really suitable for production.
 	
 \vspace{1em}
 
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+	\includegraphics[scale=0.21]{own_backend.jpg}
+\end{figure}
+\column{0.5\textwidth}
 Available backends:
 	\begin{itemize}
 		\item Redis
@@ -251,6 +325,8 @@ Available backends:
 		\item IPC
 		\item Write a custom one!
 	\end{itemize}
+\end{columns}
+
 \end{adjustwidth}
 \end{frame}
 
@@ -259,13 +335,43 @@ Available backends:
 		\texttt{./manage.py runserver}\\
 		will work for development "as usuall"...\\
 		\pause
+		\vspace{1em}
 		by spawning both, ASGI server, and workers\\
 		in one, multithreaded, process.\\
-		\pause
-		\vspace{1em}
-		For more robust (but still local) solution, try in two different terminals:
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Running workers}
+	\begin{center}
+		For more robust (but still local) solution, try:
 	\end{center}
 	
+\begin{adjustwidth}{-1.5em}{-1.5em}
+	\begin{minted}
+	[
+	bgcolor=codebg,
+	fontsize=\small,
+	baselinestretch=1.2
+	]
+	{python}
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+        "ROUTING": 
+                "channels_chat.routing.channel_routing",
+    },
+}
+	\end{minted}
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}[fragile]{Running workers}
+	\begin{center}
+And then in two different terminals:
+	\end{center}
 \begin{adjustwidth}{-1.5em}{-1.5em}
 	\begin{minted}
 	[
@@ -311,12 +417,20 @@ We can also limit the workers to be ran on certain server:
 \begin{center}
 	Daphne is an Open-Source ASGI server, that comes with the Channels.\\
 	\vspace{1em}
+	\begin{columns}
+	\column{0.5\textwidth}
 	Currently it supports:
-	\begin{itemize}
-		\item Websockets
-		\item HTTP
-		\item HTTP2 (only "normal" requests,\\ \textbf{no support for Server Push yet!} :( )
-	\end{itemize}
+		\begin{itemize}
+			\item Websockets
+			\item HTTP
+			\item HTTP2 (only "normal" requests,\\ \textbf{no support for Server Push yet!} :( )
+		\end{itemize}
+	\column{0.5\textwidth}
+		\pause
+		\begin{figure}
+		\includegraphics[scale=0.3]{disappointed.jpg}
+		\end{figure}
+	\end{columns}
 \end{center}
 \end{frame}
 
@@ -358,6 +472,14 @@ $ daphne -b 0.0.0.0 -p 80 my_project.asgi:channel_layer
 	{\fontsize{30pt}{10.2}\selectfont Thank you!}\\
 	\vspace{1em}
 	Questions Time!
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	\begin{figure}
+	\includegraphics[scale=0.43]{teapot.jpg}
+	\end{figure}
 \end{center}
 \end{frame}
 

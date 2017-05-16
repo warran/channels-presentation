@@ -1,0 +1,31 @@
+\frametitle{Daphne}
+\begin{adjustwidth}{-1.5em}{-1.5em}
+	\begin{minted}
+	[
+	bgcolor=codebg,
+	fontsize=\small,
+	baselinestretch=1.2
+	]
+	{python}
+# asgi.py
+import os
+from channels.asgi import get_channel_layer
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+			"my_project.settings")
+
+channel_layer = get_channel_layer()
+	\end{minted}
+\vspace{1em}
+To run:
+%\vspace{1em}
+	\begin{minted}
+	[
+	bgcolor=codebg,
+	fontsize=\small,
+	baselinestretch=1.2
+	]
+	{bash}
+$ daphne -b 0.0.0.0 -p 80 my_project.asgi:channel_layer
+	\end{minted}
+\end{adjustwidth}
