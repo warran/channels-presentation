@@ -1,6 +1,6 @@
-#Django Channels presentation code
+# Django Channels presentation code
 
-This repository contains code and presentation slides for a presentation
+This repository contains code and presentation slides for a speech
 on [Django Channels](https://channels.readthedocs.io/en/stable/) 
 prepared for Python Community of [SoftServe](https://softserve.ua/pl/)
 
